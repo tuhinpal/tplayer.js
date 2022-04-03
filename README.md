@@ -1,6 +1,6 @@
-# **t-player.js 🚀**
+![tplayer logo](https://user-images.githubusercontent.com/51857187/161440508-a4cb7d66-fc3c-4202-ad74-4d56a32d1e78.png)
 
-Flexible and easy Dash/HLS/DRM integration for HTML5 video. This project is made possible with [Plyr](https://github.com/sampotts/plyr), [Hls.js](https://github.com/video-dev/hls.js/), [Dash.js](https://github.com/Dash-Industry-Forum/dash.js).
+This project is made possible with [Plyr](https://github.com/sampotts/plyr), [Hls.js](https://github.com/video-dev/hls.js/), [Dash.js](https://github.com/Dash-Industry-Forum/dash.js).
 
 ## Features 📑
 
