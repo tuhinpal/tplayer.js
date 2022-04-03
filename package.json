@@ -1,0 +1,36 @@
+{
+  "name": "tplayer.js",
+  "version": "1.0.2",
+  "description": "Play like a pro",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node cleanDist && webpack --mode development --watch --config webpack.config.js",
+    "build": "node cleanDist && webpack --mode production --config webpack.config.js",
+    "publishnpm": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuhinpal/tplayer.js.git"
+  },
+  "keywords": [
+    "plyr",
+    "player"
+  ],
+  "author": "Tuhin Kanti Pal <me@thetuhin.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tuhinpal/tplayer.js/issues"
+  },
+  "homepage": "https://github.com/tuhinpal/tplayer.js#readme",
+  "dependencies": {
+    "dashjs": "^4.3.0",
+    "hls.js": "^1.1.5",
+    "plyr": "^3.6.12",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {}
+}

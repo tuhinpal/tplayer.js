@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player</title>
+    <script src="/dist/index.js"></script>
+  </head>
+  <body>
+    <div style="max-width: 100vh">
+      <video id="tplayer"></video>
+    </div>
+  </body>
+
+  <script>
+    window.tplayer({
+      id: "tplayerhtml", // anything
+      playerElem: document.getElementById("tplayer"),
+      source: {
+        dash: "https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd",
+        hls: "https://multiplatform-f.akamaihd.net/i/multi/april11/sintel/sintel-hd_,512x288_450_b,640x360_700_b,768x432_1000_b,1024x576_1400_m,.mp4.csmil/master.m3u8",
+      },
+    });
+  </script>
+</html>
