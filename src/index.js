@@ -5,21 +5,12 @@ export default async function tplayer(
   configurations = {
     playerElem: null,
     source: { dash: null, hls: null },
-    drm: {
-      widevine: {
-        url: "",
-        headers: {},
-      },
-      playready: {
-        url: "",
-        headers: {},
-      },
-    },
+    drm: null, // { widevine: { url: "", headers: {} }, playready: { url: "", headers: {} }},
   }
 ) {
   try {
-    await loadPlyrCss();
     const configs = parseConfigs(configurations);
+    await loadPlyrCss(configs);
     console.log("tplayer configs parsed =>", configs);
 
     switch (configs.sourcetype) {

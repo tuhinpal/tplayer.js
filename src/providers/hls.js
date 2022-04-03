@@ -1,12 +1,13 @@
 import Plyr from "plyr";
 import Hls from "hls.js";
+import plyrOptions from "../helpers/plyrOptions";
 
 export default function hlsJS(configs) {
   if (Hls.isSupported()) {
     const hlsInstance = new Hls({
       maxMaxBufferLength: 100,
     });
-    const playerOptions = {};
+    const playerOptions = plyrOptions(configs);
 
     hlsInstance.loadSource(configs.source);
 

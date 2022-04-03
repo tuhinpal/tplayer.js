@@ -49,5 +49,8 @@ export default function parseConfigs(configurations) {
     source,
     sourcetype, // dash | hls
     drm,
+    ui: {
+      mainColor: configurations.ui?.mainColor || "#00b3ff", // The primary UI color.
+    },
   };
 }

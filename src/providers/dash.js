@@ -1,23 +1,13 @@
 import Plyr from "plyr";
 import dashjs from "dashjs";
+import plyrOptions from "../helpers/plyrOptions";
 
 export default function dashJS(configs) {
   try {
+    var playerOptions = plyrOptions(configs);
+
     const dash = dashjs.MediaPlayer().create();
     dash.initialize(configs.playerElem, configs.source, false); // false = !autoplay
-
-    var defaultOptions = {
-      autoplay: false,
-      muted: false,
-      loop: {
-        active: false,
-      },
-      captions: {
-        active: true,
-        update: true,
-      },
-    };
-
     dash.updateSettings({
       streaming: {
         abr: {
@@ -64,7 +54,7 @@ export default function dashJS(configs) {
       const availableQualities = dash
         .getBitrateInfoListFor("video")
         .map((l) => l.height);
-      defaultOptions.quality = {
+      playerOptions.quality = {
         default: availableQualities[0].height,
         options: availableQualities,
         forced: true,
@@ -76,7 +66,7 @@ export default function dashJS(configs) {
           });
         },
       };
-      const player = new Plyr(configs.playerElem, defaultOptions);
+      const player = new Plyr(configs.playerElem, playerOptions);
       window[`tplayer_${configs.refId}_player`] = player;
     });
     dash.attachView(configs.playerElem);
