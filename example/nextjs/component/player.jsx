@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import tplayer, { destroyPlayer } from "../../../index"; // import tplayer, { destroyPlayer } from 'tplayer';
+import tplayer, { destroyPlayer } from "tplayer.js";
 
 export default function Player({ id = "tplayer", source }) {
   const videoRef = useRef();
