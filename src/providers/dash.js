@@ -30,6 +30,36 @@ export default function dashJS(configs) {
       },
     });
 
+    if (configs.drm) {
+      let drmConfig = {};
+
+      if (configs.drm.widevine) {
+        let widevineConfig = {
+          serverURL: configs.drm.widevine.url,
+        };
+
+        if (configs.drm.widevine.headers) {
+          widevineConfig.httpRequestHeaders = configs.drm.widevine.headers;
+        }
+
+        drmConfig["com.widevine.alpha"] = widevineConfig;
+      }
+
+      if (configs.drm.playready) {
+        let playreadyConfig = {
+          serverURL: configs.drm.playready.url,
+        };
+
+        if (configs.drm.playready.headers) {
+          playreadyConfig.httpRequestHeaders = configs.drm.playready.headers;
+        }
+
+        drmConfig["com.microsoft.playready"] = playreadyConfig;
+      }
+
+      dash.setProtectionData(drmConfig);
+    }
+
     dash.on("streamInitialized", function () {
       const availableQualities = dash
         .getBitrateInfoListFor("video")

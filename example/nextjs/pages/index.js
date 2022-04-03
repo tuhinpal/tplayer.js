@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>tplyer example</title>
+        <title>tplayer example</title>
         <meta name="description" content="A tplayer nextjs example" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -15,19 +15,42 @@ export default function Home() {
       <main className={styles.main}>
         <Player
           source={{
-            dash: "https://dash.akamaized.net/dash264/TestCases/2c/qualcomm/1/MultiResMPEG2.mpd",
-            hls: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", // if hls is supported it will be used
+            dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
+            hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
+          }}
+          drm={{
+            widevine: {
+              url: "https://widevine-proxy.appspot.com/proxy",
+              headers: {
+                // "T-Header": "You can send header like this",
+              },
+            },
+            playready: {
+              url: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==",
+              headers: {
+                // "T-Header": "You can send header like this",
+              },
+            },
           }}
         />
+
+        {/* Normal without drm (HLS is preferred) */}
+
+        {/* <Player
+          source={{
+            dash: "https://dash.akamaized.net/dash264/TestCases/2c/qualcomm/1/MultiResMPEG2.mpd",
+            hls: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+          }}
+        /> */}
       </main>
 
       <footer className={styles.footer}>
         <a
-          href="https://github.com/tuhinpal/tplayer.js"
+          href="https://github.com/tuhinpal/tplayer"
           target="_blank"
           rel="noopener noreferrer"
         >
-          tplayer.js on Github
+          tplayer on Github
         </a>
       </footer>
     </div>

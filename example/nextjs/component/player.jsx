@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
-import tplayer, { destroyPlayer } from "tplayer.js";
+import tplayer, { destroyPlayer } from "tplayer.js"; // "../../../index";
 
-export default function Player({ id = "tplayer", source }) {
+export default function Player({ id = "tplayer", source, drm = null }) {
   const videoRef = useRef();
 
   useEffect(() => {
@@ -9,6 +9,7 @@ export default function Player({ id = "tplayer", source }) {
       id,
       playerElem: videoRef.current,
       source,
+      drm,
     });
 
     return () => destroyPlayer({ id: "homeplayer" });

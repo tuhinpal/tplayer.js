@@ -5,6 +5,16 @@ export default async function tplayer(
   configurations = {
     playerElem: null,
     source: { dash: null, hls: null },
+    drm: {
+      widevine: {
+        url: "",
+        headers: {},
+      },
+      playready: {
+        url: "",
+        headers: {},
+      },
+    },
   }
 ) {
   try {
