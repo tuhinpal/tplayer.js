@@ -1,7 +1,7 @@
 {
   "name": "tplayer.js",
-  "version": "1.0.5",
-  "description": "Play like a pro",
+  "version": "1.0.6",
+  "description": "Flexible and easy Dash/HLS/DRM integration for HTML5 video.",
   "main": "index.js",
   "scripts": {
     "dev": "node cleanDist && webpack --mode development --watch --config webpack.config.js",
