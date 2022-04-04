@@ -91,6 +91,8 @@ export default function Home() {
 | source                | Source Object                        | At least one DASH or HLS URL is required | {dash:'some.mpd', hls: 'some.m3u8'}                                   |
 | source.dash           | MPD URL of your source file          | Required if DRM enabled                  | https://some.mpd                                                      |
 | source.hls            | M3U8 URL of your source file         | Not required if Dash is provided         | https://some.m3u8                                                     |
+| sourceHeaders.dash    | Additional XHR headers for Dash      | Optional                                 | {"some": "header"}                                                    |
+| sourceHeaders.hls     | Additional XHR headers for hls       | Optional                                 | {"some": "header"}                                                    |
 | drm                   | DRM Object                           | Optional                                 | {widevine: {url: '', headers: {}}, playready: {url: '', headers: {}}} |
 | drm.widevine          | Widevine Object                      | Optional                                 | widevine: {url: '', headers: {}}                                      |
 | drm.widevine.url      | Widevine license URL                 | Required                                 | https://some/proxy                                                    |
@@ -110,6 +112,14 @@ const options = {
   source: {
     dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
     hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
+  },
+  sourceHeaders: {
+    dash: {
+      // "T-Header": "You can send header like this",
+    },
+    hls: {
+      // "T-Header": "You can send header like this",
+    },
   },
   drm: {
     widevine: {

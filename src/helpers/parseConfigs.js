@@ -52,5 +52,9 @@ export default function parseConfigs(configurations) {
     ui: {
       mainColor: configurations.ui?.mainColor || "#00b3ff", // The primary UI color.
     },
+    sourceHeaders: {
+      dash: configurations.sourceHeaders?.dash || null,
+      hls: configurations.sourceHeaders?.hls || null,
+    },
   };
 }
