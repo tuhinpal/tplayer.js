@@ -7,6 +7,24 @@ export default function dashJS(configs) {
     var playerOptions = plyrOptions(configs);
 
     const dash = dashjs.MediaPlayer().create();
+
+    if (configs.sourceHeaders.dash) {
+      dash.extend("RequestModifier", () => {
+        return {
+          modifyRequestHeader: (xhr) => {
+            Object.keys(configs.sourceHeaders.dash).forEach((key) => {
+              xhr.setRequestHeader(key, configs.sourceHeaders.dash[key]);
+            });
+
+            return xhr;
+          },
+          modifyRequestURL: (url) => {
+            return url;
+          },
+        };
+      });
+    }
+
     dash.initialize(configs.playerElem, configs.source, false); // false = !autoplay
     dash.updateSettings({
       streaming: {

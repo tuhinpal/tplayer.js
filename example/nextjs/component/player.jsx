@@ -1,18 +1,16 @@
 import { useRef, useEffect } from "react";
-import tplayer, { destroyPlayer } from "tplayer.js"; // "../../../index";
+import { tplayer, destroyPlayer } from "../../../index";
 
-export default function Player({ id = "tplayer", source, drm = null }) {
+export default function Player({ config }) {
   const videoRef = useRef();
 
   useEffect(() => {
     tplayer({
-      id,
+      ...config,
       playerElem: videoRef.current,
-      source,
-      drm,
     });
 
-    return () => destroyPlayer({ id: "homeplayer" });
+    return () => destroyPlayer({ id: config.id });
   }, []);
 
   return (

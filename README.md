@@ -53,21 +53,25 @@ npm install tplayer.js
 // component\player.jsx
 
 import { useRef, useEffect } from "react";
-import tplayer, { destroyPlayer } from "tplayer.js";
+import { tplayer, destroyPlayer } from "tplayer.js";
 
-export default function Player(props) {
+export default function Player({ config }) {
   const videoRef = useRef();
 
   useEffect(() => {
     tplayer({
-      ...props,
+      ...config,
       playerElem: videoRef.current,
     });
 
-    return () => destroyPlayer({ id: "homeplayer" });
+    return () => destroyPlayer({ id: config.id });
   }, []);
 
-  return <video ref={videoRef}></video>;
+  return (
+    <div>
+      <video ref={videoRef}></video>
+    </div>
+  );
 }
 ```
 
@@ -78,7 +82,7 @@ import dynamic from "next/dynamic";
 const Player = dynamic(import("../component/player"), { ssr: false });
 
 export default function Home() {
-  return <Player {...options} />;
+  return <Player config={options} />;
 }
 ```
 
@@ -91,6 +95,8 @@ export default function Home() {
 | source                | Source Object                        | At least one DASH or HLS URL is required | {dash:'some.mpd', hls: 'some.m3u8'}                                   |
 | source.dash           | MPD URL of your source file          | Required if DRM enabled                  | https://some.mpd                                                      |
 | source.hls            | M3U8 URL of your source file         | Not required if Dash is provided         | https://some.m3u8                                                     |
+| sourceHeaders.dash    | Additional XHR headers for Dash      | Optional                                 | {"some": "header"}                                                    |
+| sourceHeaders.hls     | Additional XHR headers for hls       | Optional                                 | {"some": "header"}                                                    |
 | drm                   | DRM Object                           | Optional                                 | {widevine: {url: '', headers: {}}, playready: {url: '', headers: {}}} |
 | drm.widevine          | Widevine Object                      | Optional                                 | widevine: {url: '', headers: {}}                                      |
 | drm.widevine.url      | Widevine license URL                 | Required                                 | https://some/proxy                                                    |
@@ -111,6 +117,14 @@ const options = {
     dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
     hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
   },
+  sourceHeaders: {
+    dash: {
+      // "T-Header": "You can send header like this",
+    },
+    hls: {
+      // "T-Header": "You can send header like this",
+    },
+  },
   drm: {
     widevine: {
       url: "https://widevine-proxy.appspot.com/proxy", // Widevine license URL
@@ -129,6 +143,25 @@ const options = {
     mainColor: "red",
   },
 };
+```
+
+## Methods 🔧
+
+### 1. destroyPlayer({id: string})
+
+It will destroy the player instance. Id will be same as the id of the player instance.
+
+```js
+destroyPlayer({ id: "tplayer" });
+```
+
+### 2. getPlayer({id: string})
+
+It will return the player instance. Id will be same as the id of the player instance. You can apply additional controls to the player instance.
+
+```js
+let player = getPlayer({ id: "tplayer" });
+player.pause();
 ```
 
 ## Credits 💖

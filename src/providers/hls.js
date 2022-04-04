@@ -4,9 +4,19 @@ import plyrOptions from "../helpers/plyrOptions";
 
 export default function hlsJS(configs) {
   if (Hls.isSupported()) {
-    const hlsInstance = new Hls({
+    let hlsInstanceConfig = {
       maxMaxBufferLength: 100,
-    });
+    };
+
+    if (configs.sourceHeaders.hls) {
+      hlsInstanceConfig.xhrSetup = (xhr, url) => {
+        Object.keys(configs.sourceHeaders.hls).forEach((key) => {
+          xhr.setRequestHeader(key, configs.sourceHeaders.hls[key]);
+        });
+      };
+    }
+
+    const hlsInstance = new Hls(hlsInstanceConfig);
     const playerOptions = plyrOptions(configs);
 
     hlsInstance.loadSource(configs.source);
