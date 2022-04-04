@@ -51,7 +51,7 @@ import loadPlyrCss from "./helpers/loadPlyrCss";
  *   },
  * };
  */
-export default async function tplayer(configurations) {
+export async function tplayer(configurations) {
   try {
     const configs = parseConfigs(configurations);
     await loadPlyrCss(configs);
@@ -95,6 +95,7 @@ export function destroyPlayer({ id = null }) {
           window.dash.destroy();
           delete window.dash;
         }
+
         if (window.hls) {
           window.hls.destroy();
           delete window.hls;
@@ -105,5 +106,23 @@ export function destroyPlayer({ id = null }) {
   } catch (_) {}
 }
 
+export function getPlayer({ id }) {
+  try {
+    if (!id) throw new Error("id is required");
+    const player = window[`tplayer_${id}_player`];
+    if (player) {
+      return player;
+    } else {
+      throw new Error("player is destroyed or not found");
+    }
+  } catch (e) {
+    console.error("get tplayer error =>", e);
+    return null;
+  }
+}
+
+export default tplayer;
+
 window.tplayer = tplayer;
 window.destroyPlayer = destroyPlayer;
+window.getPlayer = getPlayer;

@@ -53,21 +53,25 @@ npm install tplayer.js
 // component\player.jsx
 
 import { useRef, useEffect } from "react";
-import tplayer, { destroyPlayer } from "tplayer.js";
+import { tplayer, destroyPlayer } from "tplayer.js";
 
-export default function Player(props) {
+export default function Player({ config }) {
   const videoRef = useRef();
 
   useEffect(() => {
     tplayer({
-      ...props,
+      ...config,
       playerElem: videoRef.current,
     });
 
-    return () => destroyPlayer({ id: "homeplayer" });
+    return () => destroyPlayer({ id: config.id });
   }, []);
 
-  return <video ref={videoRef}></video>;
+  return (
+    <div>
+      <video ref={videoRef}></video>
+    </div>
+  );
 }
 ```
 
@@ -78,7 +82,7 @@ import dynamic from "next/dynamic";
 const Player = dynamic(import("../component/player"), { ssr: false });
 
 export default function Home() {
-  return <Player {...options} />;
+  return <Player config={options} />;
 }
 ```
 
@@ -139,6 +143,25 @@ const options = {
     mainColor: "red",
   },
 };
+```
+
+## Methods 🔧
+
+### 1. destroyPlayer({id: string})
+
+It will destroy the player instance. Id will be same as the id of the player instance.
+
+```js
+destroyPlayer({ id: "tplayer" });
+```
+
+### 2. getPlayer({id: string})
+
+It will return the player instance. Id will be same as the id of the player instance. You can apply additional controls to the player instance.
+
+```js
+let player = getPlayer({ id: "tplayer" });
+player.pause();
 ```
 
 ## Credits 💖

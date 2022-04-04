@@ -4,6 +4,39 @@ import dynamic from "next/dynamic";
 const Player = dynamic(import("../component/player"), { ssr: false });
 
 export default function Home() {
+  const playerConfig = {
+    id: "tplayernext",
+    source: {
+      dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
+      hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
+    },
+    sourceHeaders: {
+      dash: {
+        // "T-Header": "You can send header like this",
+      },
+      hls: {
+        // "T-Header": "You can send header like this",
+      },
+    },
+    drm: {
+      widevine: {
+        url: "https://widevine-proxy.appspot.com/proxy", // Widevine license URL
+        headers: {
+          // "T-Header": "You can send header like this",
+        },
+      },
+      playready: {
+        url: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==", // Playready license URL
+        headers: {
+          // "T-Header": "You can send header like this",
+        },
+      },
+    },
+    ui: {
+      mainColor: "red",
+    },
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,35 +46,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Player
-          source={{
-            dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
-            hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
-          }}
-          drm={{
-            widevine: {
-              url: "https://widevine-proxy.appspot.com/proxy",
-              headers: {
-                // "T-Header": "You can send header like this",
-              },
-            },
-            playready: {
-              url: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==",
-              headers: {
-                // "T-Header": "You can send header like this",
-              },
-            },
-          }}
-        />
-
-        {/* Normal without drm (HLS is preferred) */}
-
-        {/* <Player
-          source={{
-            dash: "https://dash.akamaized.net/dash264/TestCases/2c/qualcomm/1/MultiResMPEG2.mpd",
-            hls: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-          }}
-        /> */}
+        <Player config={playerConfig} />
       </main>
 
       <footer className={styles.footer}>
