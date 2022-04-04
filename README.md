@@ -21,7 +21,7 @@ This project is made possible with [Plyr](https://github.com/sampotts/plyr), [Hl
 1.  Put the tplayer.js script tag in the `<head>` of your HTML document.
 
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/tplayer.js@latest/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tplayer.js@1.0.7/dist/index.js"></script>
     ```
 
 2.  Put the video element in the `<body>` of your HTML document.
