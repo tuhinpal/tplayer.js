@@ -1,11 +1,11 @@
 {
   "name": "tplayer.js",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Flexible and easy Dash/HLS/DRM integration for HTML5 video.",
   "main": "index.js",
   "scripts": {
-    "dev": "node cleanDist && webpack --mode development --watch --config webpack.config.js",
-    "build": "node cleanDist && webpack --mode production --config webpack.config.js",
+    "dev": "node scripts/cleanDist && webpack --mode development --watch --config webpack.config.js",
+    "build": "node scripts/cleanDist && node scripts/jsdelivrVersion && webpack --mode production --config webpack.config.js",
     "publishnpm": "npm run build && npm publish"
   },
   "repository": {
