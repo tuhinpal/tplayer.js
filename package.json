@@ -13,11 +13,17 @@
     "url": "git+https://github.com/tuhinpal/tplayer.js.git"
   },
   "keywords": [
+    "hls",
+    "dash",
+    "drm",
     "plyr",
-    "player"
+    "widevine",
+    "hlsjs",
+    "playready",
+    "dashjs"
   ],
   "author": "Tuhin Kanti Pal <me@thetuhin.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tuhinpal/tplayer.js/issues"
   },
