@@ -1,6 +1,6 @@
 {
   "name": "tplayer.js",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Flexible and easy Dash/HLS/DRM integration for HTML5 video.",
   "main": "index.js",
   "scripts": {
