@@ -20,7 +20,7 @@ export default function Home() {
     },
     drm: {
       widevine: {
-        url: "https://widevine-proxy.appspot.com/proxy", // Widevine license URL
+        url: "https://cwip-shaka-proxy.appspot.com/no_auth", // Widevine license URL
         headers: {
           // "T-Header": "You can send header like this",
         },

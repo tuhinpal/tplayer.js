@@ -1,5 +1,6 @@
 import parseConfigs from "./helpers/parseConfigs";
 import loadPlyrCss from "./helpers/loadPlyrCss";
+import setAdditionalConfigs from "./helpers/setAdditionalConfigs";
 
 /**
  * Initialize the tplayer https://github.com/tuhinpal/tplayer.js#options-
@@ -22,6 +23,10 @@ import loadPlyrCss from "./helpers/loadPlyrCss";
  * @property {object} drm.playready.headers - Playready DRM additional headers E.g. { 'X-Custom-Header': 'value' }
  * @property {object} ui - UI configuration object
  * @property {object} ui.mainColor - Main color of the player
+ * @property {array|null} captions - Captions configuration array
+ * @property {string} captions.label - Caption label
+ * @property {string} captions.language - Caption language
+ * @property {string} captions.src - Caption source url
  *
  * Example configuration:
  * @example
@@ -34,7 +39,7 @@ import loadPlyrCss from "./helpers/loadPlyrCss";
  *   },
  *   drm: {
  *     widevine: {
- *       url: "https://widevine-proxy.appspot.com/proxy", // Widevine license URL
+ *       url: "https://cwip-shaka-proxy.appspot.com/no_auth", // Widevine license URL
  *       headers: {
  *         // "T-Header": "You can send header like this",
  *       },
@@ -49,12 +54,20 @@ import loadPlyrCss from "./helpers/loadPlyrCss";
  *   ui: {
  *     mainColor: "red",
  *   },
+ *  captions: [
+ *    {
+ *      label: "English",
+ *      language: "en",
+ *      src: "./test.vtt",
+ *    }
+ *   ],
  * };
  */
 export async function tplayer(configurations) {
   try {
     const configs = parseConfigs(configurations);
     await loadPlyrCss(configs);
+    setAdditionalConfigs(configs);
     console.log("tplayer configs parsed =>", configs);
 
     switch (configs.sourcetype) {
@@ -93,12 +106,10 @@ export function destroyPlayer({ id = null }) {
         // also delete dash and hls instances
         if (window.dash) {
           window.dash.destroy();
-          delete window.dash;
         }
 
         if (window.hls) {
           window.hls.destroy();
-          delete window.hls;
         }
       }
       console.log("tplayer player destroyed =>", id);

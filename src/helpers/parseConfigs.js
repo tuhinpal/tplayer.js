@@ -43,6 +43,19 @@ export default function parseConfigs(configurations) {
     }
   }
 
+  if (configurations.captions) {
+    // test if this format match [{label: "", src: "", language: ""}]
+    if (Array.isArray(configurations.captions)) {
+      configurations.captions.forEach((caption) => {
+        if (!caption.label || !caption.src || !caption.language) {
+          throw new Error("Caption format is not correct");
+        }
+      });
+    } else {
+      configurations.captions = [];
+    }
+  }
+
   return {
     refId: configurations.id || "tplayer",
     playerElem: configurations.playerElem,
@@ -56,5 +69,6 @@ export default function parseConfigs(configurations) {
       dash: configurations.sourceHeaders?.dash || null,
       hls: configurations.sourceHeaders?.hls || null,
     },
+    captions: configurations.captions || [],
   };
 }

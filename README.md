@@ -21,7 +21,7 @@ This project is made possible with [Plyr](https://github.com/sampotts/plyr), [Hl
 1.  Put the tplayer.js script tag in the `<head>` of your HTML document.
 
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/tplayer.js@1.0.9/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tplayer.js@1.1.0/dist/index.js"></script>
     ```
 
 2.  Put the video element in the `<body>` of your HTML document.
@@ -88,24 +88,28 @@ export default function Home() {
 
 ## Options 📝
 
-| Name                  | Description                          | Default / Requirement / Fallback         | Example                                                               |
-| --------------------- | ------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------- |
-| id                    | This is the `tplayer.js` instance id | Default: tplayer                         | `'tplayerhtml'`                                                       |
-| playerElem            | Video element from DOM               | Required                                 | document.getElementById("tplayer")                                    |
-| source                | Source Object                        | At least one DASH or HLS URL is required | {dash:'some.mpd', hls: 'some.m3u8'}                                   |
-| source.dash           | MPD URL of your source file          | Required if DRM enabled                  | https://some.mpd                                                      |
-| source.hls            | M3U8 URL of your source file         | Not required if Dash is provided         | https://some.m3u8                                                     |
-| sourceHeaders.dash    | Additional XHR headers for Dash      | Optional                                 | {"some": "header"}                                                    |
-| sourceHeaders.hls     | Additional XHR headers for hls       | Optional                                 | {"some": "header"}                                                    |
-| drm                   | DRM Object                           | Optional                                 | {widevine: {url: '', headers: {}}, playready: {url: '', headers: {}}} |
-| drm.widevine          | Widevine Object                      | Optional                                 | widevine: {url: '', headers: {}}                                      |
-| drm.widevine.url      | Widevine license URL                 | Required                                 | https://some/proxy                                                    |
-| drm.widevine.headers  | Headers object for license requests  | Optional                                 | {"T-Header-One": "Hi", "T-Header-Two": "Hello"}                       |
-| drm.playready         | Playready Object                     | Optional                                 | playready: {url: '', headers: {}}                                     |
-| drm.playready.url     | Playready license URL                | Required                                 | https://some.asmx                                                     |
-| drm.playready.headers | Headers object for license requests  | Optional                                 | {"T-Header-One": "Hi", "T-Header-Two": "Hello"}                       |
-| ui                    | Extended UI Object                   | Optional                                 | {mainColor: '#ff002b'}                                                |
-| ui.mainColor          | Main color                           | Optional                                 | #ff002b                                                               |
+| Name                     | Description                          | Default / Requirement / Fallback         | Example                                                               |
+| ------------------------ | ------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------- |
+| id                       | This is the `tplayer.js` instance id | Default: tplayer                         | `'tplayerhtml'`                                                       |
+| playerElem               | Video element from DOM               | Required                                 | document.getElementById("tplayer")                                    |
+| source                   | Source Object                        | At least one DASH or HLS URL is required | {dash:'some.mpd', hls: 'some.m3u8'}                                   |
+| source.dash              | MPD URL of your source file          | Required if DRM enabled                  | https://some.mpd                                                      |
+| source.hls               | M3U8 URL of your source file         | Not required if Dash is provided         | https://some.m3u8                                                     |
+| sourceHeaders.dash       | Additional XHR headers for Dash      | Optional                                 | {"some": "header"}                                                    |
+| sourceHeaders.hls        | Additional XHR headers for hls       | Optional                                 | {"some": "header"}                                                    |
+| drm                      | DRM Object                           | Optional                                 | {widevine: {url: '', headers: {}}, playready: {url: '', headers: {}}} |
+| drm.widevine             | Widevine Object                      | Optional                                 | widevine: {url: '', headers: {}}                                      |
+| drm.widevine.url         | Widevine license URL                 | Required                                 | https://some/proxy                                                    |
+| drm.widevine.headers     | Headers object for license requests  | Optional                                 | {"T-Header-One": "Hi", "T-Header-Two": "Hello"}                       |
+| drm.playready            | Playready Object                     | Optional                                 | playready: {url: '', headers: {}}                                     |
+| drm.playready.url        | Playready license URL                | Required                                 | https://some.asmx                                                     |
+| drm.playready.headers    | Headers object for license requests  | Optional                                 | {"T-Header-One": "Hi", "T-Header-Two": "Hello"}                       |
+| ui                       | Extended UI Object                   | Optional                                 | {mainColor: '#ff002b'}                                                |
+| ui.mainColor             | Main color                           | Optional                                 | #ff002b                                                               |
+| captions                 | WebVTT Captions array                | Optional                                 | [{label: "", src: "", language: ""}]                                  |
+| captions[index].label    | Caption label                        | Optional                                 | "English"                                                             |
+| captions[index].src      | Caption source URL                   | Required                                 | https://some.vtt                                                      |
+| captions[index].language | Caption language                     | Optional                                 | "en"                                                                  |
 
 **See this example**
 
@@ -127,7 +131,7 @@ const options = {
   },
   drm: {
     widevine: {
-      url: "https://widevine-proxy.appspot.com/proxy", // Widevine license URL
+      url: "https://cwip-shaka-proxy.appspot.com/no_auth", // Widevine license URL
       headers: {
         // "T-Header": "You can send header like this",
       },
@@ -142,6 +146,13 @@ const options = {
   ui: {
     mainColor: "red",
   },
+  captions: [
+    {
+      label: "English",
+      src: "./test.vtt",
+      language: "en",
+    },
+  ],
 };
 ```
 
