@@ -1,3 +1,5 @@
+[![Supported By](https://raw.githubusercontent.com/tuhinpal/tuhinpal/master/supported-by-banner.svg)](https://ddevi.com/?utm_source=tuhin_github_tplayer.js)
+
 ![tplayer logo](https://user-images.githubusercontent.com/51857187/161440508-a4cb7d66-fc3c-4202-ad74-4d56a32d1e78.png)
 
 This project is made possible with [Plyr](https://github.com/sampotts/plyr), [Hls.js](https://github.com/video-dev/hls.js/), [Dash.js](https://github.com/Dash-Industry-Forum/dash.js).
